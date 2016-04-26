@@ -61,7 +61,7 @@
         <!-- Google AdMob 7.7.1 framework -->
         <framework src="src/ios/GoogleMobileAds.framework" custom="true" />
 
-        <!-- iOS development frameworks need by Google AdMob 6.5.1 framework -->
+        <!-- iOS development frameworks need by Google AdMob 7.7.1 framework -->
          <framework src="AdSupport.framework" />
          <framework src="AudioToolbox.framework" />
          <framework src="AVFoundation.framework" />
