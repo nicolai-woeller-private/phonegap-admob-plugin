@@ -34,10 +34,8 @@
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
         </config-file>
 
-        <source-file src="src/android/libs/android.jar" target-dir="libs/"/>
         <source-file src="src/android/libs/googleFramework.jar" target-dir="libs/"/>
 	<source-file src="src/android/libs/googleFrameworkGms.jar" target-dir="libs/"/>
-	<source-file src="src/android/libs/json-20090211.jar" target-dir="libs/"/>        
 	<source-file src="src/android/com/google/cordova/plugin/AdMobPlugin.java" target-dir="src/com/google/cordova/plugin"/>
     </platform>
     <!-- ios -->
