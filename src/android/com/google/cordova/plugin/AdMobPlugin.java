@@ -12,7 +12,6 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 /**
@@ -104,11 +103,8 @@ public class AdMobPlugin extends CordovaPlugin {
 			@Override
 			public void run() {
 				try {
-					AppCompatActivity context = new AppCompatActivity();
-					android.util.Log.v("AppCompatActivity: ", context.toString());
-					android.util.Log.v("publisherId: ", publisherId);					
-					MobileAds.initialize(context, publisherId);
-					adView = (AdView) new View(context);
+					MobileAds.initialize(cordova.getActivity(), publisherId);
+					adView = (AdView) new View(cordova.getActivity());
 					
 					AdRequest adRequest = new AdRequest.Builder().build();
 					adView.loadAd(adRequest);
@@ -152,11 +148,10 @@ public class AdMobPlugin extends CordovaPlugin {
 			@Override
 			public void run() {
 				try {
-					AppCompatActivity context = new AppCompatActivity();
-					MobileAds.initialize(context, publisherId);
+					MobileAds.initialize(cordova.getActivity(), publisherId);
 
 					// Create the InterstitialAd and set the adUnitId.
-					intertitial = new InterstitialAd(context);
+					intertitial = new InterstitialAd(cordova.getActivity());
 					// Defined in res/values/strings.xml
 					intertitial.setAdUnitId(publisherId);
 
