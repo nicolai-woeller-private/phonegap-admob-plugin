@@ -105,6 +105,8 @@ public class AdMobPlugin extends CordovaPlugin {
 			public void run() {
 				try {
 					AppCompatActivity context = new AppCompatActivity();
+					android.util.Log.v("AppCompatActivity: ", context.toString());
+					android.util.Log.v("publisherId: ", publisherId);					
 					MobileAds.initialize(context, publisherId);
 					adView = (AdView) new View(context);
 					
