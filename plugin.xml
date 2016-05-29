@@ -9,7 +9,8 @@
     <license>MIT</license>
 
     <engines>
-        <engine name="cordova" version="5.2.0-dev" />
+        <engine name="cordova" version=">=2.9.0" />
+	<engine name="cordova-android" version="5.2.0-dev" />
     </engines>
     <!---->
     <js-module src="www/AdMobPlugin.js" name="AdMob">
