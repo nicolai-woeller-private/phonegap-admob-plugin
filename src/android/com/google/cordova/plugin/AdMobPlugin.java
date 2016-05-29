@@ -103,8 +103,8 @@ public class AdMobPlugin extends CordovaPlugin {
 			@Override
 			public void run() {
 				try {
-					MobileAds.initialize(cordova.getActivity(), publisherId);
-					adView = (AdView) new View(cordova.getActivity());
+					MobileAds.initialize(cordova.getActivity().getApplicationContext(), publisherId);
+					adView = (AdView) new View(cordova.getActivity().getApplicationContext());
 					
 					AdRequest adRequest = new AdRequest.Builder().build();
 					adView.loadAd(adRequest);
@@ -148,10 +148,10 @@ public class AdMobPlugin extends CordovaPlugin {
 			@Override
 			public void run() {
 				try {
-					MobileAds.initialize(cordova.getActivity(), publisherId);
+					MobileAds.initialize(cordova.getActivity().getApplicationContext(), publisherId);
 
 					// Create the InterstitialAd and set the adUnitId.
-					intertitial = new InterstitialAd(cordova.getActivity());
+					intertitial = new InterstitialAd(cordova.getActivity().getApplicationContext());
 					// Defined in res/values/strings.xml
 					intertitial.setAdUnitId(publisherId);
 
