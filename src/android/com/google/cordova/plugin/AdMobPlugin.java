@@ -3,6 +3,7 @@ package com.google.cordova.plugin;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.LOG;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,6 +15,7 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
 import android.view.View;
+import android.util.Log;
 
 /**
  * This class represents the native implementation for the AdMob Cordova plugin.
@@ -26,7 +28,7 @@ public class AdMobPlugin extends CordovaPlugin {
 	/** The adView to display to the user. */
 	private AdView adView;
 	private InterstitialAd intertitial;
-
+	
 	/** Cordova Actions. */
 	public static final String ACTION_CREATE_BANNER_VIEW = "createBannerView";
 	public static final String ACTION_CREATE_INTERSTITIAL_VIEW = "createInterstitialView";
@@ -104,11 +106,15 @@ public class AdMobPlugin extends CordovaPlugin {
 		Runnable runnable = new Runnable() {
 			@Override
 			public void run() {
-				MobileAds.initialize(cordova.getActivity(), publisherId);
-				adView = (AdView) new View(cordova.getActivity());
-
-				AdRequest adRequest = new AdRequest.Builder().build();
-				adView.loadAd(adRequest);
+				try {
+					MobileAds.initialize(cordova.getActivity(), publisherId);
+					adView = (AdView) new View(cordova.getActivity());
+					
+					AdRequest adRequest = new AdRequest.Builder().build();
+					adView.loadAd(adRequest);
+				} catch (Exception e) {
+					LOG.v("createBannerView", e.getMessage());
+				}
 				callbackContext.success();
 			}
 		};
@@ -145,14 +151,18 @@ public class AdMobPlugin extends CordovaPlugin {
 		Runnable runnable = new Runnable() {
 			@Override
 			public void run() {
-				MobileAds.initialize(cordova.getActivity(), publisherId);
+				try {
+					MobileAds.initialize(cordova.getActivity(), publisherId);
 
-				// Create the InterstitialAd and set the adUnitId.
-				intertitial = new InterstitialAd(cordova.getActivity());
-				// Defined in res/values/strings.xml
-				intertitial.setAdUnitId(publisherId);
+					// Create the InterstitialAd and set the adUnitId.
+					intertitial = new InterstitialAd(cordova.getActivity());
+					// Defined in res/values/strings.xml
+					intertitial.setAdUnitId(publisherId);
 
-				intertitial.show();
+					intertitial.show();
+				} catch (Exception e) {
+					LOG.v("createInterstitialView", e.getMessage());
+				}
 			}
 		};
 		this.cordova.getActivity().runOnUiThread(runnable);
@@ -181,8 +191,9 @@ public class AdMobPlugin extends CordovaPlugin {
 			inputExtras = data.getJSONObject("extras");
 			// callbackContext.success();
 			// return true;
-		} catch (JSONException exception) {
-			callbackContext.error(exception.getMessage());
+		} catch (JSONException e) {
+			LOG.v("executeRequestAd", e.getMessage());
+			callbackContext.error(e.getMessage());
 		}
 
 		// Request an ad on the UI thread.
