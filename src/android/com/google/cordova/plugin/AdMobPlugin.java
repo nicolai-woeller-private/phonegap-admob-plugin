@@ -1,7 +1,6 @@
 package com.google.cordova.plugin;
 
 import org.apache.cordova.CallbackContext;
-import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -112,7 +111,7 @@ public class AdMobPlugin extends CordovaPlugin {
 					AdRequest adRequest = new AdRequest.Builder().build();
 					adView.loadAd(adRequest);
 				} catch (Exception e) {
-					android.util.Log.v("createBannerView", e.getMessage());
+					android.util.Log.e("createBannerView", e.getMessage());
 				}
 				callbackContext.success();
 			}
@@ -161,7 +160,7 @@ public class AdMobPlugin extends CordovaPlugin {
 
 					intertitial.show();
 				} catch (Exception e) {
-					android.util.Log.v("createInterstitialView", e.getMessage());
+					android.util.Log.e("createInterstitialView", e.getMessage());
 				}
 			}
 		};
@@ -192,7 +191,7 @@ public class AdMobPlugin extends CordovaPlugin {
 			// callbackContext.success();
 			// return true;
 		} catch (JSONException e) {
-			android.util.Log.v("executeRequestAd", e.getMessage());
+			android.util.Log.e("executeRequestAd", e.getMessage());
 			callbackContext.error(e.getMessage());
 		}
 
