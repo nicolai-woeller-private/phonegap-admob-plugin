@@ -34,9 +34,12 @@
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
         </config-file>
 
-	<source-file src="src/android/libs/googleFramework.jar" target-dir="libs/"/>
-	<source-file src="src/android/libs/googleFrameworkGms.jar" target-dir="libs/"/>
-	<source-file src="src/android/com/google/cordova/plugin/AdMobPlugin.java" target-dir="src/com/google/cordova/plugin"/>
+	<source-file src="src/android/libs/google-play-services.jar" target-dir="libs" />
+	<source-file src="src/android/libs/cordova-generic-ad.jar" target-dir="libs" />
+	<source-file src="src/android/AdMobMediation.java" target-dir="src/com/rjfun/cordova/admob" />
+        <source-file src="src/android/AdMobPlugin.java" target-dir="src/com/rjfun/cordova/admob" />
+	<source-file src="src/android/CordovaPluginExt.java" target-dir="src/com/rjfun/cordova/ext" />
+	<source-file src="src/android/PluginAdapterDelegate.java" target-dir="src/com/rjfun/cordova/ext" />
     </platform>
     <!-- ios -->
     <platform name="ios">
