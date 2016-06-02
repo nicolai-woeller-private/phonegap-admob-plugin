@@ -14,33 +14,36 @@
     </engines>
     <!---->
     <js-module src="www/AdMob.js" name="AdMob">
-        <clobbers target="window.admob"/>
+        <clobbers target="window.AdMob" />
     </js-module>
-
 
     <!-- android -->
     <platform name="android">
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+	<activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" 
+		android:name="com.google.android.gms.ads.AdActivity"
+		android:theme="@android:style/Theme.Translucent" />
+        </config-file>
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="AdMobPlugin" >
+            <feature name="AdMob" >
                 <param name="android-package" value="com.rjfun.cordova.admob.AdMobPlugin"/>
+		<param name="onload" value="true" />
             </feature>
         </config-file>
-        <config-file target="AndroidManifest.xml" parent="/manifest/application">
-            <activity android:name="com.google.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
-        </config-file>
         <config-file target="AndroidManifest.xml" parent="/*">
-            <uses-permission android:name="android.permission.INTERNET" />
-            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
         </config-file>
 
-	<source-file src="src/android/libs/googleFrameworkGms.jar" target-dir="libs" />
-	<source-file src="src/android/libs/googleFramework.jar" target-dir="libs" />
 	<source-file src="src/android/libs/cordova-generic-ad.jar" target-dir="libs" />
 	<source-file src="src/android/AdMobMediation.java" target-dir="src/com/rjfun/cordova/admob" />
         <source-file src="src/android/AdMobPlugin.java" target-dir="src/com/rjfun/cordova/admob" />
 	<source-file src="src/android/CordovaPluginExt.java" target-dir="src/com/rjfun/cordova/ext" />
 	<source-file src="src/android/PluginAdapterDelegate.java" target-dir="src/com/rjfun/cordova/ext" />
+
+        <!-- cordova CLI using gradle and it working well -->
+        <framework src="com.google.android.gms:play-services-ads:+" />
+        <!-- but unfortunately, build.phonegap.com, Intel XDK, and some other tools still use ant -->
     </platform>
     <!-- ios -->
     <platform name="ios">
