@@ -1,6 +1,7 @@
 package com.google.cordova.plugin;
 
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -97,19 +98,21 @@ public class AdMobPlugin extends CordovaPlugin {
 
 	private synchronized void createBannerView(final String publisherId, final AdSize adSize,
 			final CallbackContext callbackContext) {
+		final CordovaInterface cordova = this.cordova;
 
 		// Create the AdView on the UI thread.
 		Runnable runnable = new Runnable() {
 			@Override
 			public void run() {
 				try {
-					MobileAds.initialize(cordova.getActivity().getApplicationContext(), publisherId);
-					adView = (AdView) new View(cordova.getActivity().getApplicationContext());
+					android.util.Log.v("MobileAds", MobileAds.class.toString());
+					MobileAds.initialize(cordova.getActivity(), publisherId);
+					adView = (AdView) new View(cordova.getActivity());
 					
 					AdRequest adRequest = new AdRequest.Builder().build();
 					adView.loadAd(adRequest);
 				} catch (Exception e) {
-					android.util.Log.e("createBannerView", e.getMessage());
+					android.util.Log.v("createBannerView", e.getMessage());
 				}
 				callbackContext.success();
 			}
@@ -148,16 +151,16 @@ public class AdMobPlugin extends CordovaPlugin {
 			@Override
 			public void run() {
 				try {
-					MobileAds.initialize(cordova.getActivity().getApplicationContext(), publisherId);
+					MobileAds.initialize(cordova.getActivity(), publisherId);
 
 					// Create the InterstitialAd and set the adUnitId.
-					intertitial = new InterstitialAd(cordova.getActivity().getApplicationContext());
+					intertitial = new InterstitialAd(cordova.getActivity());
 					// Defined in res/values/strings.xml
 					intertitial.setAdUnitId(publisherId);
 
 					intertitial.show();
 				} catch (Exception e) {
-					android.util.Log.e("createInterstitialView", e.getMessage());
+					android.util.Log.v("createInterstitialView", e.getMessage());
 				}
 			}
 		};
@@ -188,7 +191,7 @@ public class AdMobPlugin extends CordovaPlugin {
 			// callbackContext.success();
 			// return true;
 		} catch (JSONException e) {
-			android.util.Log.e("executeRequestAd", e.getMessage());
+			android.util.Log.v("executeRequestAd", e.getMessage());
 			callbackContext.error(e.getMessage());
 		}
 
