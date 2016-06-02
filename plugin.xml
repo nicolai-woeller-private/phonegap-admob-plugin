@@ -13,7 +13,7 @@
 	<engine name="cordova-android" version=">=3.5.1" />
     </engines>
     <!---->
-    <js-module src="www/AdMobPlugin.js" name="AdMob">
+    <js-module src="www/AdMob.js" name="AdMob">
         <clobbers target="window.admob"/>
     </js-module>
 
