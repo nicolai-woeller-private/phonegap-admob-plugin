@@ -223,7 +223,7 @@ public class AdMobPlugin extends GenericAdPlugin {
 	@SuppressLint("DefaultLocale")
 	private AdRequest buildAdRequest() {
 		final Activity activity = getActivity();
-		Log.v("AdRequest.class", AdRequest.class.toString());
+		Log.v("AdRequest.Builder.class", AdRequest.class.toString());
 		AdRequest.Builder builder = new AdRequest.Builder();
 
 		if (isTesting) {
@@ -337,14 +337,14 @@ public class AdMobPlugin extends GenericAdPlugin {
 		@Override
 		public void onAdFailedToLoad(int errorCode) {
 			String jsonData = String.format("{ 'error': %d, 'reason':'%s' }", errorCode, getErrorReason(errorCode));
-			fireEvent(LOGTAG, EVENT_BANNER_FAILRECEIVE, jsonData);
+			fireEvent(LOGTAG, "EVENT_BANNER_FAILRECEIVE", jsonData);
 
 			fireAdErrorEvent(EVENT_AD_FAILLOAD, errorCode, getErrorReason(errorCode), ADTYPE_BANNER);
 		}
 
 		@Override
 		public void onAdLeftApplication() {
-			fireEvent(LOGTAG, EVENT_BANNER_LEAVEAPP, null);
+			fireEvent(LOGTAG, "EVENT_BANNER_LEAVEAPP", null);
 
 			fireAdEvent(EVENT_AD_LEAVEAPP, ADTYPE_BANNER);
 		}
@@ -354,21 +354,21 @@ public class AdMobPlugin extends GenericAdPlugin {
 			if ((!bannerVisible) && autoShowBanner) {
 				showBanner(adPosition, posX, posY);
 			}
-			fireEvent(LOGTAG, EVENT_BANNER_RECEIVE, null);
+			fireEvent(LOGTAG, "EVENT_BANNER_RECEIVE", null);
 
 			fireAdEvent(EVENT_AD_LOADED, ADTYPE_BANNER);
 		}
 
 		@Override
 		public void onAdOpened() {
-			fireEvent(LOGTAG, EVENT_BANNER_PRESENT, null);
+			fireEvent(LOGTAG, "EVENT_BANNER_PRESENT", null);
 
 			fireAdEvent(EVENT_AD_PRESENT, ADTYPE_BANNER);
 		}
 
 		@Override
 		public void onAdClosed() {
-			fireEvent(LOGTAG, EVENT_BANNER_DISMISS, null);
+			fireEvent(LOGTAG, "EVENT_BANNER_DISMISS", null);
 
 			fireAdEvent(EVENT_AD_DISMISS, ADTYPE_BANNER);
 		}
@@ -387,14 +387,14 @@ public class AdMobPlugin extends GenericAdPlugin {
 		@Override
 		public void onAdFailedToLoad(int errorCode) {
 			String jsonData = String.format("{ 'error': %d, 'reason':'%s' }", errorCode, getErrorReason(errorCode));
-			fireEvent(LOGTAG, EVENT_INTERSTITIAL_FAILRECEIVE, jsonData);
+			fireEvent(LOGTAG, "EVENT_INTERSTITIAL_FAILRECEIVE", jsonData);
 
 			fireAdErrorEvent(EVENT_AD_FAILLOAD, errorCode, getErrorReason(errorCode), ADTYPE_INTERSTITIAL);
 		}
 
 		@Override
 		public void onAdLeftApplication() {
-			fireEvent(LOGTAG, EVENT_INTERSTITIAL_LEAVEAPP, null);
+			fireEvent(LOGTAG, "EVENT_INTERSTITIAL_LEAVEAPP", null);
 
 			fireAdEvent(EVENT_AD_LEAVEAPP, ADTYPE_INTERSTITIAL);
 		}
@@ -404,21 +404,21 @@ public class AdMobPlugin extends GenericAdPlugin {
 			if (autoShowInterstitial) {
 				showInterstitial();
 			}
-			fireEvent(LOGTAG, EVENT_INTERSTITIAL_RECEIVE, null);
+			fireEvent(LOGTAG, "EVENT_INTERSTITIAL_RECEIVE", null);
 
 			fireAdEvent(EVENT_AD_LOADED, ADTYPE_INTERSTITIAL);
 		}
 
 		@Override
 		public void onAdOpened() {
-			fireEvent(LOGTAG, EVENT_INTERSTITIAL_PRESENT, null);
+			fireEvent(LOGTAG, "EVENT_INTERSTITIAL_PRESENT", null);
 
 			fireAdEvent(EVENT_AD_PRESENT, ADTYPE_INTERSTITIAL);
 		}
 
 		@Override
 		public void onAdClosed() {
-			fireEvent(LOGTAG, EVENT_INTERSTITIAL_DISMISS, null);
+			fireEvent(LOGTAG, "EVENT_INTERSTITIAL_DISMISS", null);
 
 			fireAdEvent(EVENT_AD_DISMISS, ADTYPE_INTERSTITIAL);
 
