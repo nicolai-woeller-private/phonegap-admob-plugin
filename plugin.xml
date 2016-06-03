@@ -41,6 +41,6 @@
 	<source-file src="src/android/CordovaPluginExt.java" target-dir="src/com/rjfun/cordova/ext" />
 	<source-file src="src/android/PluginAdapterDelegate.java" target-dir="src/com/rjfun/cordova/ext" />
 	
-	<framework src="com.google.android.gms:play-services-ads:9.0.0" />
+	<framework src="com.google.android.gms:play-services-ads-lite:9.0.0" />
     </platform>
 </plugin>
