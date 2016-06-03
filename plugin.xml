@@ -10,37 +10,63 @@
 
     <engines>
         <engine name="cordova" version=">=2.9.0" />
-	<engine name="cordova-android" version=">=3.0" />
     </engines>
     <!---->
-    <js-module src="www/AdMob.js" name="AdMob">
-        <clobbers target="window.AdMob" />
+    <js-module src="www/AdMobPlugin.js" name="AdMob">
+        <clobbers target="window.admob"/>
     </js-module>
+
 
     <!-- android -->
     <platform name="android">
-        <config-file target="AndroidManifest.xml" parent="/manifest/application">
-		<activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" 
-			android:name="com.google.android.gms.ads.AdActivity"
-			android:theme="@android:style/Theme.Translucent" />
-        </config-file>
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="AdMob">
-                <param name="android-package" value="com.rjfun.cordova.admob.AdMobPlugin" />
-		<param name="onload" value="true" />
+            <feature name="AdMobPlugin" >
+                <param name="android-package" value="com.google.cordova.plugin.AdMobPlugin"/>
             </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity android:name="com.google.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
         </config-file>
 
-	<source-file src="src/android/libs/googleFramework.jar" target-dir="libs" />
-	<framework src="libs/googleFramework.jar" custom="true" />
-	<source-file src="src/android/libs/cordova-generic-ad.jar" target-dir="libs" />
-	<source-file src="src/android/AdMobMediation.java" target-dir="src/com/rjfun/cordova/admob" />
-        <source-file src="src/android/AdMobPlugin.java" target-dir="src/com/rjfun/cordova/admob" />
-	<source-file src="src/android/CordovaPluginExt.java" target-dir="src/com/rjfun/cordova/ext" />
-	<source-file src="src/android/PluginAdapterDelegate.java" target-dir="src/com/rjfun/cordova/ext" />
+        <source-file src="src/android/libs/GoogleAdMobAdsSdk-6.4.1.jar" target-dir="libs/"/>
+        <source-file src="src/android/com/google/cordova/plugin/AdMobPlugin.java" target-dir="src/com/google/cordova/plugin"/>
+    </platform>
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="AdMobPlugin">
+                <param name="ios-package" value="AdMobPlugin" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/AdMobPlugin.h" />
+        <source-file src="src/ios/AdMobPlugin.m" />
+
+
+        <!-- Google AdMob 7.7.1 framework -->
+        <framework src="src/ios/GoogleMobileAds.framework" custom="true" />
+       
+        <framework src="AdSupport.framework" />
+        <framework src="AudioToolbox.framework" />
+        <framework src="AVFoundation.framework" />
+        <framework src="CoreGraphics.framework" />
+        <framework src="CoreLocation.framework" />
+        <framework src="CoreTelephony.framework" />
+        <framework src="EventKit.framework" />
+        <framework src="EventKitUI.framework" />
+        <framework src="Foundation.framework" />
+        <framework src="MediaPlayer.framework" />
+        <framework src="MessageUI.framework" />
+        <framework src="QuartzCore.framework" />
+        <framework src="StoreKit.framework" />
+        <framework src="SystemConfiguration.framework" />
+        <framework src="UIKit.framework" />
+
+
     </platform>
 </plugin>
