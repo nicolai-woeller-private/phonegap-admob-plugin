@@ -41,6 +41,16 @@
 	<source-file src="src/android/CordovaPluginExt.java" target-dir="src/com/rjfun/cordova/ext" />
 	<source-file src="src/android/PluginAdapterDelegate.java" target-dir="src/com/rjfun/cordova/ext" />
 
-	<framework src="src/android/libs/googleFramework.jar" custom="true" />
+	<framework src="com.google.android.gms:play-services-ads:+" />
+	<framework src="com.google.android.gms:play-services-ads-lite:+" />
+	<framework src="com.google.android.gms:play-services-base:+" />
+	<framework src="com.google.android.gms:play-services-basement:+" />
+	<framework src="com.google.android.gms:play-services-tasks:+" />
+	<framework src="com.google.firebase:firebase-ads:+" />
+	<framework src="com.google.firebase:firebase-analaytics:+" />
+	<framework src="com.google.firebase:firebase-analaytics-impl:+" />
+	<framework src="com.google.firebase:firebase-common:+" />
+	<framework src="com.google.firebase:firebase-core:+" />
+	<framework src="com.android.support:appcompat-v7:23.4.0" />
     </platform>
 </plugin>
