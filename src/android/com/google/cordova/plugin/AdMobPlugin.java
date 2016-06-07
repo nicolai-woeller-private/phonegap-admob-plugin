@@ -164,9 +164,12 @@ public class AdMobPlugin extends CordovaPlugin {
             @Override
             public void run() {
                 intertitial = new DfpInterstitialAd(cordova.getActivity(), publisherId);
+                Log.w(LOGTAG, "executeCreateInterstitialViewStepOneOk");
                 intertitial.setAdListener(new BannerListener());
+                Log.w(LOGTAG, "executeCreateInterstitialViewStepTwoOk");
                 // Notify the plugin.
                 callbackContext.success();
+                Log.w(LOGTAG, "executeCreateInterstitialViewOk");
             }
         };
         this.cordova.getActivity().runOnUiThread(runnable);
