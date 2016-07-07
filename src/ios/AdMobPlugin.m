@@ -3,6 +3,7 @@
 #import <GoogleMobileAds/GADAdSize.h>
 #import <GoogleMobileAds/GADBannerView.h>
 #import <GoogleMobileAds/GADInterstitial.h>
+#import <GoogleMobileAds/GADRequest.h>
 
 @interface AdMobPlugin ()
 
