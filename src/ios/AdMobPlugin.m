@@ -231,8 +231,10 @@
     self.bannerView.adUnitID = pubId;
     self.bannerView.delegate = self;
     self.bannerView.rootViewController = self.viewController;
-    
     self.bannerViewFrame = self.bannerView.frame;
+
+    GADRequest *request = [GADRequest request];
+    [self.bannerView loadRequest:request];
 }
 
 - (void)createGADInterstitialWithPubId:(NSString *)pubId {
