@@ -231,7 +231,7 @@
 
     if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation)) {
         self.bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeSmartBannerPortrait];
-    else {
+    } else {
         self.bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeSmartBannerLandscape];
     }
 
