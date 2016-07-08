@@ -228,14 +228,17 @@
 
 - (void)createGADBannerViewWithPubId:(NSString *)pubId
                           bannerType:(GADAdSize)adSize {
-    self.bannerView = [[GADBannerView alloc] initWithAdSize:adSize];
+
+    if (UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation)) {
+        self.bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeSmartBannerPortrait];
+    else {
+        self.bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeSmartBannerLandscape];
+    }
+
     self.bannerView.adUnitID = pubId;
     self.bannerView.delegate = self;
     self.bannerView.rootViewController = self.viewController;
     self.bannerViewFrame = self.bannerView.frame;
-
-    GADRequest *request = [GADRequest request];
-    [self.bannerView loadRequest:request];
 }
 
 - (void)createGADInterstitialWithPubId:(NSString *)pubId {
